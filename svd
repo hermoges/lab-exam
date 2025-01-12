@@ -1,0 +1,31 @@
+import numpy as np
+
+# Define the original matrix A
+A = np.array([
+    [3, 4, 3],
+    [1, 2, 3],
+    [4, 2, 1]
+])
+
+# Performing SVD
+U, D, VT = np.linalg.svd(A)
+
+# Display the results
+print("Matrix U (Left singular vectors):")
+print(U)
+
+print("\nSingular values (D):")
+print(D)
+
+print("\nMatrix VT (Transpose of right singular vectors):")
+print(VT)
+
+# Reconstruct the original matrix
+A_remake = U @ np.diag(D) @ VT
+
+# Print the reconstructed matrix
+print("\nReconstructed Matrix A:")
+print(A_remake)
+
+# Check if the reconstruction is accurate
+print("\nIs the reconstruction close to the original? ", np.allclose(A, A_remake))

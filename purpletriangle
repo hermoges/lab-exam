@@ -1,0 +1,30 @@
+import pygame
+from pygame.locals import *
+from OpenGL.GL import *
+
+def draw_purple_triangle():
+    glBegin(GL_TRIANGLES)  
+    glColor3f(1.0, 0.0, 1.0)  # Purple color
+    glVertex2f(0.0, 0.5)     
+    glVertex2f(-0.5, -0.5)   
+    glVertex2f(0.5, -0.5)    
+    glEnd()
+
+def run():
+    pygame.init()
+    pygame.display.set_mode((800, 600), DOUBLEBUF | OPENGL)
+    glOrtho(-1, 1, -1, 1, -1, 1)  
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                return
+
+        glClear(GL_COLOR_BUFFER_BIT)
+        draw_purple_triangle()
+        pygame.display.flip()
+
+if __name__ == "__main__":
+    run()
+

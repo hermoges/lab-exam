@@ -1,0 +1,42 @@
+import pygame
+import sys
+
+def draw_canvas():
+    pygame.init()
+    screen = pygame.display.set_mode((500, 400))
+    pygame.display.set_caption("Pygame Canvas with Entangled Triangles")
+    screen.fill((255, 255, 255))  
+    
+   
+    pygame.draw.circle(screen, (128, 0, 128), (250, 200), 5)  # Purple point in the center
+    
+    
+    start = (50, 50)
+    end = (250, 50)
+    pygame.draw.line(screen, (255, 0, 0), start, end, 3)  # Red line with width 3
+    
+  
+    blue_triangle = [(250, 50), (100, 350), (400, 350)]
+    pygame.draw.polygon(screen, (0, 0, 255), blue_triangle)  # Blue triangle
+    
+   
+    white_triangle = [(250, 270), (150, 150), (350, 150)]
+    pygame.draw.polygon(screen, (255, 255, 255), white_triangle)  # White triangle
+    
+    pygame.display.flip()
+
+def main():
+    draw_canvas()
+
+  
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_F1:
+                pygame.quit()
+                sys.exit()
+
+if __name__ == "__main__":
+    main()

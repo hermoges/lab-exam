@@ -1,0 +1,38 @@
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+import pygame
+from pygame.locals import *
+
+def draw_red_line(start_x, start_y, end_x, end_y):
+    glBegin(GL_LINES)
+    glColor3f(1.0, 0.0, 0.0)  # Set the color to red
+    glVertex2f(start_x, start_y)
+    glVertex2f(end_x, end_y)
+    glEnd()
+
+def main():
+    pygame.init()
+    window_size = (800, 600)
+    pygame.display.set_mode(window_size, DOUBLEBUF | OPENGL)
+
+    glOrtho(0, window_size[0], 0, window_size[1], -1, 1)
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                running = False
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
+        
+        draw_red_line(500, 100, 700, 500)
+
+        pygame.display.flip()
+        pygame.time.wait(10)
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
